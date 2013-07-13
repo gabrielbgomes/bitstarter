@@ -7,21 +7,18 @@ var app = express.createServer(express.logger());
 
 try {
     var data = fs.readFileSync('index.html', 'ascii');
-    console.log(data);
+    response.send(data); //console.log(data);
 }
 catch (err) {
     console.error("There was an error opening the file:");
-    console.log(err);
+    response.send(err); //console.log(err);
 }
 
 
 app.get('/', function(request, response) {
-  response.send("Hello");
+  response.send("Hello 2");
 });
 
-app.get('/', function(request, response) {
-  response.send("World");
-});
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
