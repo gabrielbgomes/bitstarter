@@ -1,11 +1,26 @@
+
 var express = require('express');
+
+ var fs = require('fs');
 
 var app = express.createServer(express.logger());
 
-var content = fs.readFileSync('index.html');
+try {
+    var data = fs.readFileSync('index.html', 'ascii');
+    console.log(data);
+}
+catch (err) {
+    console.error("There was an error opening the file:");
+    console.log(err);
+}
+
 
 app.get('/', function(request, response) {
-  response.send(content);
+  response.send("Hello");
+});
+
+app.get('/', function(request, response) {
+  response.send("World");
 });
 
 var port = process.env.PORT || 5000;
